@@ -17,55 +17,13 @@ public class Hero extends Mobile {
 			this.lastPosition.setLocation(this.getPosition().x, this.getPosition().y);
 		}
 	}
-
-	@Override
-	public void moveUp() 
-	{
-		this.saveLastPosition();
-		super.moveUp();
-		
-
-	}
-
-	@Override
-	public void moveLeft() {
-		this.saveLastPosition();
-		super.moveLeft();
-	}
 	
 	@Override
-	public void moveTL() {
+	public void move(int x, int y) {
 		this.saveLastPosition();
-		super.moveTL();
-	}
-	
-	public void moveTR() {
-		this.saveLastPosition();
-		super.moveTR();
-	}
-	
-	public void moveBL() {
-		this.saveLastPosition();
-		super.moveBL();
-	}
-	
-	public void moveBR() {
-		this.saveLastPosition();
-		super.moveBR();
+		super.move(x,y);
 	}
 
-	@Override
-	public void moveDown() {
-		this.saveLastPosition();
-		super.moveDown();
-	}
-
-	@Override
-	public void moveRight() {
-		this.saveLastPosition();
-		super.moveRight();
-	}
-	
 	public void fire()
 	{
 		this.saveLastPosition();

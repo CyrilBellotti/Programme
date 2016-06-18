@@ -60,75 +60,22 @@ public abstract class Mobile extends Element implements IPawn {
 		this.setY(y);
 	}
 
-	private boolean isMovePossible(final int x, final int y) {
+	public boolean isMovePossible(final int x, final int y) {
 		return (this.getNettleWorld().getElements(x, y).getPermeability() != Permeability.BLOCKING);
 	}
 
-	// Mouvenement vers le Haut
-	public void moveUp() {
-		if (this.isMovePossible(this.getX(), this.getY() - 1)) {
-			this.setY(this.getY() - 1);
+	// Mouvenement
+	public void move(int x, int y) {
+		if (this.isMovePossible(x, y)) {
+			if (this.getX() != x) {
+				this.setX(x);
+			}
+			if (this.getY() != y) {
+				this.setY(y);
+			}
 		}
 	}
 	
-	// Mouvement vers la diagonale Haut/Gauche
-	public void moveTL() 
-	{
-		if (this.isMovePossible(this.getX() - 1, this.getY() - 1)) 
-		{
-			this.setY(this.getY() - 1);
-			this.setX(this.getX() - 1);
-		}
-	}
-	
-	// Mouvement vers la diagonale Bas/Gauche
-	public void moveBL() 
-	{
-		if (this.isMovePossible(this.getX() - 1, this.getY() + 1)) 
-		{
-			this.setY(this.getY() + 1);
-			this.setX(this.getX() - 1);
-		}
-	}
-	
-	// Mouvement vers la diagonale Bas/Droite
-	public void moveBR() 
-	{
-		if (this.isMovePossible(this.getX() + 1, this.getY() + 1)) 
-		{
-			this.setY(this.getY() + 1);
-			this.setX(this.getX() + 1);
-		}
-	}
-
-	// Mouvement vers la diagonale Haut/Droite
-	public void moveTR() 
-	{
-		if (this.isMovePossible(this.getX() + 1, this.getY() - 1)) 
-		{
-			this.setY(this.getY() - 1);
-			this.setX(this.getX() + 1);
-		}
-	}
-	
-	public void moveLeft() {
-		if (this.isMovePossible(this.getX() - 1, this.getY())) {
-			this.setX(this.getX() - 1);
-		}
-	}
-
-	public void moveDown() {
-		if (this.isMovePossible(this.getX(), this.getY() + 1)) {
-			this.setY(this.getY() + 1);
-		}
-	}
-
-	public void moveRight() {
-		if (this.isMovePossible(this.getX() + 1, this.getY())) {
-			this.setX(this.getX() + 1);
-		}
-	}
-
 /*	public void fire() {
 		if()
 		{

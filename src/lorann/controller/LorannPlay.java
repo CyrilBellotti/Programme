@@ -9,8 +9,13 @@ import lorann.contract.IDoActionOnHeroes;
 import lorann.contract.ILorannFrame;
 import lorann.contract.ILorannWorld;
 import lorann.contract.IOrderPerformed;
+import lorann.model.Fire;
 import lorann.model.Hero;
 import lorann.model.LorannWorld;
+import lorann.model.Monster_1;
+import lorann.model.Monster_2;
+import lorann.model.Monster_3;
+import lorann.model.Monster_4;
 import lorann.view.LorannView;
 
 public class LorannPlay implements IOrderPerformed {
@@ -18,11 +23,19 @@ public class LorannPlay implements IOrderPerformed {
 	private ILorannWorld lorannMeeting;
 	private ILorannFrame lorannFrame;
 	private int	playMode;
+	private String lastDirection;
+	public Boolean existFireball;
 
 // --------- Création du nouvel Hero dans la monde aux coordonnées 1,1 sur la map ---------
 	public LorannPlay(final ILorannWorld lorann) {
+		existFireball = false;
+		lastDirection = null;
 		this.lorann = lorann;
 		this.lorann.addMobile(new Hero(), 1, 1);
+		this.lorann.addMobile(new Monster_1(), 10, 5);
+		this.lorann.addMobile(new Monster_2(), 11, 5);
+		this.lorann.addMobile(new Monster_3(), 12, 5);
+		this.lorann.addMobile(new Monster_4(), 13, 5);
 	}
 
 	private ILorannWorld getLorannWorld() {
@@ -62,40 +75,52 @@ public class LorannPlay implements IOrderPerformed {
 // --------- Le Hero bouge (position x,y) ---------
 		switch (userOrder) {
 			case UP:
+				lastDirection = "down";
 				System.out.println("Déplacement HAUT");
-				this.getActualLorannWorld().getHero().moveUp(); // Ce déplace vers le haut 
+				this.getActualLorannWorld().getHero().move(this.getActualLorannWorld().getHero().getX(), this.getActualLorannWorld().getHero().getY() - 1); // Ce déplace vers le haut 
 				break;
 			case RIGHT:
+				lastDirection = "left";
 				System.out.println("Déplacement DROITE");
-				this.getActualLorannWorld().getHero().moveRight(); // Ce déplace vers la droite
+				this.getActualLorannWorld().getHero().move(this.getActualLorannWorld().getHero().getX() +1, this.getActualLorannWorld().getHero().getY()); // Ce déplace vers la droite
 				break;
 			case DOWN:
+				lastDirection = "up";
 				System.out.println("Déplacement BAS");
-				this.getActualLorannWorld().getHero().moveDown(); // Ce déplace vers le bas
+				this.getActualLorannWorld().getHero().move(this.getActualLorannWorld().getHero().getX(), this.getActualLorannWorld().getHero().getY() + 1);; // Ce déplace vers le bas
 				break;
 			case LEFT:
+				lastDirection = "right";
 				System.out.println("Déplacement GAUCHE");
-				this.getActualLorannWorld().getHero().moveLeft(); // Ce déplace vers la gauche
+				this.getActualLorannWorld().getHero().move(this.getActualLorannWorld().getHero().getX() - 1, this.getActualLorannWorld().getHero().getY()); // Ce déplace vers la gauche
 				break;
 			case TOPRIGHT:
+				lastDirection = "dl";
 				System.out.println("Déplacement diago HAUT / DROITE");
-				this.getActualLorannWorld().getHero().moveTR(); // Ce déplace en diagonale haut/droite
+				this.getActualLorannWorld().getHero().move(this.getActualLorannWorld().getHero().getX() + 1, this.getActualLorannWorld().getHero().getY() - 1); // Ce déplace en diagonale haut/droite
 				break;
 			case TOPLEFT:
+				lastDirection = "dr";
 				System.out.println("Déplacement diago HAUT / GAUCHE");
-				this.getActualLorannWorld().getHero().moveTL(); // Ce déplace en diagonale haut/gauche
+				this.getActualLorannWorld().getHero().move(this.getActualLorannWorld().getHero().getX() - 1, this.getActualLorannWorld().getHero().getY() - 1); // Ce déplace en diagonale haut/gauche
 				break;
 			case BOTTOMLEFT:
+				lastDirection = "tr";
 				System.out.println("Déplacement diago BAS / DROITE");
-				this.getActualLorannWorld().getHero().moveBL(); // Ce déplace en diagonale bas/droite
+				this.getActualLorannWorld().getHero().move(this.getActualLorannWorld().getHero().getX() - 1, this.getActualLorannWorld().getHero().getY() + 1); // Ce déplace en diagonale bas/droite
 				break;
 			case BOTTOMRIGHT:
+				lastDirection = "tl";
 				System.out.println("Déplacement diago BAS / GAUCHE"); 
-				this.getActualLorannWorld().getHero().moveBR(); // Ce déplace en diagonale bas/gauche
+				this.getActualLorannWorld().getHero().move(this.getActualLorannWorld().getHero().getX() + 1, this.getActualLorannWorld().getHero().getY() + 1); // Ce déplace en diagonale bas/gauche
 				break;
 			case FIRE:
 				System.out.println("Lorann tire une boule");
-				this.getActualLorannWorld().getHero().fire();
+				//if (lastDirection != null && existFireball == false) {
+				if (lastDirection != null) {
+					this.lorann.addMobile(new Fire(lastDirection), this.getActualLorannWorld().getHero().getX(), this.getActualLorannWorld().getHero().getY());
+					existFireball = true;
+				}
 			case NOP:
 			default:
 				break;

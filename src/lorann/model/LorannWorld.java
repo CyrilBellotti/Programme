@@ -19,6 +19,7 @@ public class LorannWorld extends Observable implements ILorannWorld {
 	private int	width;
 	private int	height;
 	private Hero hero;
+	private Fire fire;
 	private Object lorann;
 
 	private LorannWorld() {
@@ -156,5 +157,15 @@ public class LorannWorld extends Observable implements ILorannWorld {
 	LorannView.displayMessage("Tu t'es fait manger par le monstre");
 	this.addElement(MotionlessElements.getFromFileSymbol('M'), x, y);
 		}
+	
+	@Override
+	public void delFire(int x, int y) {
+	this.delElement(x, y);
+		}
+
+	@Override
+	public Fire getFire() {
+		return this.fire;
+	}
 	
 }

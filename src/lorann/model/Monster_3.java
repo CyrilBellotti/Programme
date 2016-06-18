@@ -6,15 +6,15 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Monster_1 extends Mobile
+public class Monster_3 extends Mobile
 {
 	public int interval = 500;
 	ArrayList <Point> moveable;
 	private final Point lastPosition;
 	private int randomNum;
 
-	public Monster_1() {
-		super(new Sprite("  ", "monster_1.png"), "Monster_1");
+	public Monster_3() {
+		super(new Sprite("  ", "monster_3.png"), "Monster_1");
 		this.lastPosition = new Point();
 		this.lastPosition.setLocation(this.getPosition().x, this.getPosition().y);
 		defineNextPosition();

@@ -10,10 +10,10 @@ public abstract class MotionlessElements {
 	public static final MotionlessElement	CrystalBall = new CrystalBall();
 	public static final MotionlessElement	PURSE = new Purse();
 	public static final MotionlessElement	GATE_CLOSE = new Gate_Close();
-	public static final MotionlessElement	MONSTER1 = new Monster_1();
+	//public static final MotionlessElement	MONSTER1 = new Monster_1();
 
 
-	private static MotionlessElement			motionlessElements[]	= { VERTIC_BONE, BONE, GATE_OPEN, FLOOR, HORIZ_BONE, ESCAPE, CrystalBall, PURSE, GATE_CLOSE, MONSTER1 };
+	private static MotionlessElement			motionlessElements[]	= { VERTIC_BONE, BONE, GATE_OPEN, FLOOR, HORIZ_BONE, ESCAPE, CrystalBall, PURSE, GATE_CLOSE};
 
 	public static MotionlessElement getFromFileSymbol(final char fileSymbol) 
 	{
