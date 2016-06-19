@@ -21,9 +21,19 @@ public class LorannWorld extends Observable implements ILorannWorld {
 	private Hero hero;
 	private Fire fire;
 	private Object lorann;
+	public Boolean existFireball;
 
 	private LorannWorld() {
 		this.mobiles = new ArrayList<Mobile>();
+		this.existFireball = false;
+	}
+	
+	public Boolean getExistFireball() {
+		return this.existFireball;
+	}
+	
+	public void setExistFireball(Boolean exist) {
+		this.existFireball = exist;
 	}
 
 	public LorannWorld(final String fileName) throws IOException {
@@ -155,13 +165,19 @@ public class LorannWorld extends Observable implements ILorannWorld {
 	@Override
 	public void delHero(int x, int y) {
 	LorannView.displayMessage("Tu t'es fait manger par le monstre");
-	this.addElement(MotionlessElements.getFromFileSymbol('M'), x, y);
-		}
+		this.addElement(MotionlessElements.getFromFileSymbol('M'), x, y);
+	}
 	
 	@Override
 	public void delFire(int x, int y) {
-	this.delElement(x, y);
+		for (Mobile mobile : this.mobiles) {
+			if(mobile.getCategory() == "fireball")
+			{
+				this.mobiles.remove(mobile);
+			}
+			this.setExistFireball(false);
 		}
+	}
 
 	@Override
 	public Fire getFire() {

@@ -96,10 +96,42 @@ public class Fire extends Mobile {
 					break;
 			}
 		}
+		
+		// si le hero est sur la boule
 		if (this.getNettleWorld().getHero().getX() == x && this.getNettleWorld().getHero().getY() == y){
-			//alerter le controller pour supprimer l'objet
+			// on supprime la boule
 			this.getNettleWorld().delFire(x, y);
 		}
+		
+		// pour chacun des elements mobiles
+		for (Mobile mobile : this.getNettleWorld().getMobiles()) {
+			// si l'element mobile est sur la position de la boule de feu
+			if (mobile.getX()  == x && mobile.getY()  == y){
+				// si l'element mobile est un monstre
+				// alors il est mort et la boule reviens au hero
+				switch (mobile.getCategory()) 
+				{
+					case "Monster_1" :
+						this.getNettleWorld().getMobiles().remove(mobile);
+						break;
+					case "Monster_2" : 
+						this.getNettleWorld().getMobiles().remove(mobile);
+						break;
+					case "Monster_3" : 
+						this.getNettleWorld().setExistFireball(false);
+						this.getNettleWorld().getMobiles().remove(mobile);
+						break;
+					case "Monster_4" : 
+						this.getNettleWorld().getMobiles().remove(mobile);
+						break;
+					default : 
+						break;
+				}
+				this.getNettleWorld().delFire(x, y);
+			}
+		}
+		
+		// deplacement
 		super.move(x,y);
 	}
 	

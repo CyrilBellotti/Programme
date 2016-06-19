@@ -18,6 +18,10 @@ public interface ILorannWorld {
 	public int getHeight();
 
 	public MotionlessElement getElements(int x, int y);
+	
+	public Boolean getExistFireball();
+	
+	public void setExistFireball(Boolean exist);
 
 	public Hero getHero();
 	

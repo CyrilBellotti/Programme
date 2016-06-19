@@ -24,18 +24,16 @@ public class LorannPlay implements IOrderPerformed {
 	private ILorannFrame lorannFrame;
 	private int	playMode;
 	private String lastDirection;
-	public Boolean existFireball;
 
 // --------- Création du nouvel Hero dans la monde aux coordonnées 1,1 sur la map ---------
 	public LorannPlay(final ILorannWorld lorann) {
-		existFireball = false;
 		lastDirection = null;
 		this.lorann = lorann;
 		this.lorann.addMobile(new Hero(), 1, 1);
-		this.lorann.addMobile(new Monster_1(), 10, 5);
-		this.lorann.addMobile(new Monster_2(), 11, 5);
+		this.lorann.addMobile(new Monster_1(), 8, 5);
+		this.lorann.addMobile(new Monster_2(), 10, 5);
 		this.lorann.addMobile(new Monster_3(), 12, 5);
-		this.lorann.addMobile(new Monster_4(), 13, 5);
+		this.lorann.addMobile(new Monster_4(), 15, 5);
 	}
 
 	private ILorannWorld getLorannWorld() {
@@ -116,10 +114,9 @@ public class LorannPlay implements IOrderPerformed {
 				break;
 			case FIRE:
 				System.out.println("Lorann tire une boule");
-				//if (lastDirection != null && existFireball == false) {
-				if (lastDirection != null) {
+				if (lastDirection != null && this.getLorannWorld().getExistFireball() == false) {
 					this.lorann.addMobile(new Fire(lastDirection), this.getActualLorannWorld().getHero().getX(), this.getActualLorannWorld().getHero().getY());
-					existFireball = true;
+					this.getLorannWorld().setExistFireball(true);
 				}
 			case NOP:
 			default:

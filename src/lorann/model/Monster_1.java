@@ -48,19 +48,7 @@ public class Monster_1 extends Mobile
 	public void visibility() 
 	{
 		moveable = new ArrayList();
-		
-		//regarde en haut
-		if (this.isMovePossible(this.getX(), this.getY() - 1))
-		{
-			moveable.add(new Point(this.getX(), this.getY() - 1));
-		}
-		
-		//regarde en bas
-		if (this.isMovePossible(this.getX(), this.getY() + 1))
-		{
-			moveable.add(new Point(this.getX(), this.getY() + 1));
-		}
-		
+	
 		//regarde a droite
 		if (this.isMovePossible(this.getX() + 1, this.getY()))
 		{
@@ -72,24 +60,7 @@ public class Monster_1 extends Mobile
 		{
 			moveable.add(new Point(this.getX() - 1, this.getY()));
 		}
-		
-		//regarde en diagonale
-		if (this.isMovePossible(this.getX() + 1, this.getY() +1))
-		{
-			moveable.add(new Point(this.getX() + 1, this.getY() +1));
-		}
-		if (this.isMovePossible(this.getX() + 1, this.getY() -1))
-		{
-			moveable.add(new Point(this.getX() + 1, this.getY() -1));
-		}
-		if (this.isMovePossible(this.getX() - 1, this.getY() + 1))
-		{
-			moveable.add(new Point(this.getX() - 1, this.getY() + 1));
-		}
-		if (this.isMovePossible(this.getX() - 1, this.getY() - 1))
-		{
-			moveable.add(new Point(this.getX() - 1, this.getY() - 1));
-		}
+
 	}
 	
 	@Override

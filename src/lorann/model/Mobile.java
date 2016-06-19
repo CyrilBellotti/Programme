@@ -34,7 +34,7 @@ public abstract class Mobile extends Element implements IPawn {
 	public int getY() {
 		return this.position.y;
 	}
-
+	
 	protected void setY(final int y) {
 		if ((y >= 0) && (y < this.getNettleWorld().getHeight())) {
 			this.position.y = y;

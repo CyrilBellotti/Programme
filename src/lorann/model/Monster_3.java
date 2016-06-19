@@ -14,7 +14,7 @@ public class Monster_3 extends Mobile
 	private int randomNum;
 
 	public Monster_3() {
-		super(new Sprite("  ", "monster_3.png"), "Monster_1");
+		super(new Sprite("  ", "monster_3.png"), "Monster_3");
 		this.lastPosition = new Point();
 		this.lastPosition.setLocation(this.getPosition().x, this.getPosition().y);
 		defineNextPosition();
@@ -48,30 +48,6 @@ public class Monster_3 extends Mobile
 	public void visibility() 
 	{
 		moveable = new ArrayList();
-		
-		//regarde en haut
-		if (this.isMovePossible(this.getX(), this.getY() - 1))
-		{
-			moveable.add(new Point(this.getX(), this.getY() - 1));
-		}
-		
-		//regarde en bas
-		if (this.isMovePossible(this.getX(), this.getY() + 1))
-		{
-			moveable.add(new Point(this.getX(), this.getY() + 1));
-		}
-		
-		//regarde a droite
-		if (this.isMovePossible(this.getX() + 1, this.getY()))
-		{
-			moveable.add(new Point(this.getX() + 1, this.getY()));
-		}
-		
-		//regarde a gauche
-		if (this.isMovePossible(this.getX() - 1, this.getY()))
-		{
-			moveable.add(new Point(this.getX() - 1, this.getY()));
-		}
 		
 		//regarde en diagonale
 		if (this.isMovePossible(this.getX() + 1, this.getY() +1))

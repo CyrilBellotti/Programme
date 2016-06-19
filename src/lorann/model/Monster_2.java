@@ -14,7 +14,7 @@ public class Monster_2 extends Mobile
 	private int randomNum;
 
 	public Monster_2() {
-		super(new Sprite("  ", "monster_2.png"), "Monster_1");
+		super(new Sprite("  ", "monster_2.png"), "Monster_2");
 		this.lastPosition = new Point();
 		this.lastPosition.setLocation(this.getPosition().x, this.getPosition().y);
 		defineNextPosition();
@@ -59,36 +59,6 @@ public class Monster_2 extends Mobile
 		if (this.isMovePossible(this.getX(), this.getY() + 1))
 		{
 			moveable.add(new Point(this.getX(), this.getY() + 1));
-		}
-		
-		//regarde a droite
-		if (this.isMovePossible(this.getX() + 1, this.getY()))
-		{
-			moveable.add(new Point(this.getX() + 1, this.getY()));
-		}
-		
-		//regarde a gauche
-		if (this.isMovePossible(this.getX() - 1, this.getY()))
-		{
-			moveable.add(new Point(this.getX() - 1, this.getY()));
-		}
-		
-		//regarde en diagonale
-		if (this.isMovePossible(this.getX() + 1, this.getY() +1))
-		{
-			moveable.add(new Point(this.getX() + 1, this.getY() +1));
-		}
-		if (this.isMovePossible(this.getX() + 1, this.getY() -1))
-		{
-			moveable.add(new Point(this.getX() + 1, this.getY() -1));
-		}
-		if (this.isMovePossible(this.getX() - 1, this.getY() + 1))
-		{
-			moveable.add(new Point(this.getX() - 1, this.getY() + 1));
-		}
-		if (this.isMovePossible(this.getX() - 1, this.getY() - 1))
-		{
-			moveable.add(new Point(this.getX() - 1, this.getY() - 1));
 		}
 	}
 	

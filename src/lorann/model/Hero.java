@@ -10,6 +10,7 @@ public class Hero extends Mobile {
 		super(new Sprite("☺!", "lorann_gif.gif"), "Hero");
 		this.lastPosition = new Point();
 		this.lastPosition.setLocation(this.getPosition().x, this.getPosition().y);
+		this.getY();
 	}
 
 	private void saveLastPosition() {

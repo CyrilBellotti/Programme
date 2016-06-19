@@ -14,7 +14,7 @@ public class Monster_4 extends Mobile
 	private int randomNum;
 
 	public Monster_4() {
-		super(new Sprite("  ", "monster_4.png"), "Monster_1");
+		super(new Sprite("  ", "monster_4.png"), "Monster_4");
 		this.lastPosition = new Point();
 		this.lastPosition.setLocation(this.getPosition().x, this.getPosition().y);
 		defineNextPosition();
