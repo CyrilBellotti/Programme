@@ -2,7 +2,6 @@ package lorann.model;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,7 +10,6 @@ public class Monster_2 extends Mobile
 	public int interval = 500;
 	ArrayList <Point> moveable;
 	private final Point lastPosition;
-	private int randomNum;
 
 	public Monster_2() {
 		super(new Sprite("  ", "monster_2.png"), "Monster_2");
@@ -41,33 +39,36 @@ public class Monster_2 extends Mobile
 				}
 				else 
 				{
-					visibility();
-					if (moveable.size() == 0) {
-						randomNum = 0;
-					} else {
-						randomNum = (int)(Math.random() * ((moveable.size())));
+					// si le hero est vers la bas ..
+					if((getNettleWorld().getHero().getY() - getY()) < 0)  
+					{
+						// s'il peut aller a bas, il y va
+						if (isMovePossible(getX(), getY() - 1))
+						{
+							move(getX(), getY() - 1); 
+						}
+						// sinon il va a haut
+						else 
+						{
+							move(getX(), getY() + 1); 
+						}
 					}
-					move((int)moveable.get(randomNum).getX(), (int)moveable.get(randomNum).getY());  
+					else 
+					{
+						// s'il peut aller a droite, il y va
+						if (isMovePossible(getX(), getY() + 1))
+						{
+							move(getX(), getY() + 1); 
+						}
+						// sinon il va a gauche
+						else 
+						{
+							move(getX(), getY()); 
+						}
+					}
 				}
 			}
 		}, 0, interval);
-	}
-	
-	public void visibility() 
-	{
-		moveable = new ArrayList();
-		
-		//regarde en haut
-		if (this.isMovePossible(this.getX(), this.getY() - 1))
-		{
-			moveable.add(new Point(this.getX(), this.getY() - 1));
-		}
-		
-		//regarde en bas
-		if (this.isMovePossible(this.getX(), this.getY() + 1))
-		{
-			moveable.add(new Point(this.getX(), this.getY() + 1));
-		}
 	}
 	
 	@Override

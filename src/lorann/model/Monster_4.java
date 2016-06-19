@@ -2,7 +2,6 @@ package lorann.model;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,7 +10,6 @@ public class Monster_4 extends Mobile
 	public int interval = 500;
 	ArrayList <Point> moveable;
 	private final Point lastPosition;
-	private int randomNum;
 
 	public Monster_4() {
 		super(new Sprite("  ", "monster_4.png"), "Monster_4");
@@ -35,63 +33,64 @@ public class Monster_4 extends Mobile
 				}
 				else 
 				{
-					visibility();
-					if (moveable.size() == 0) {
-						randomNum = 0;
-					} else {
-						randomNum = (int)(Math.random() * ((moveable.size())));
+					// si le hero est vers la gauche ..
+					if((getNettleWorld().getHero().getX() - getX()) < 0)  
+					{
+						// s'il peut aller a gauche, il y va
+						if (isMovePossible(getX() - 1, getY()))
+						{
+							move(getX() - 1, getY()); 
+						}
+						// sinon il va a droite
+						else 
+						{
+							move(getX() + 1, getY()); 
+						}
 					}
-					move((int)moveable.get(randomNum).getX(), (int)moveable.get(randomNum).getY());  
+					else if ((getNettleWorld().getHero().getX() + getX()) < 0) 
+					{
+						// s'il peut aller a droite, il y va
+						if (isMovePossible(getX() + 1, getY()))
+						{
+							move(getX() + 1, getY()); 
+						}
+						// sinon il va a gauche
+						else 
+						{
+							move(getX() - 1, getY()); 
+						}
+					}
+
+					// si le hero est vers la bas ..
+					else if((getNettleWorld().getHero().getY() - getY()) < 0)  
+					{
+						// s'il peut aller a bas, il y va
+						if (isMovePossible(getX(), getY() - 1))
+						{
+							move(getX(), getY() - 1); 
+						}
+						// sinon il va a haut
+						else 
+						{
+							move(getX(), getY() + 1); 
+						}
+					}
+					else 
+					{
+						// s'il peut aller a droite, il y va
+						if (isMovePossible(getX(), getY() + 1))
+						{
+							move(getX(), getY() + 1); 
+						}
+						// sinon il va a gauche
+						else 
+						{
+							move(getX(), getY()); 
+						}
+					}
 				}
 			}
 		}, 0, interval);
-	}
-	
-	public void visibility() 
-	{
-		moveable = new ArrayList();
-		
-		//regarde en haut
-		if (this.isMovePossible(this.getX(), this.getY() - 1))
-		{
-			moveable.add(new Point(this.getX(), this.getY() - 1));
-		}
-		
-		//regarde en bas
-		if (this.isMovePossible(this.getX(), this.getY() + 1))
-		{
-			moveable.add(new Point(this.getX(), this.getY() + 1));
-		}
-		
-		//regarde a droite
-		if (this.isMovePossible(this.getX() + 1, this.getY()))
-		{
-			moveable.add(new Point(this.getX() + 1, this.getY()));
-		}
-		
-		//regarde a gauche
-		if (this.isMovePossible(this.getX() - 1, this.getY()))
-		{
-			moveable.add(new Point(this.getX() - 1, this.getY()));
-		}
-		
-		//regarde en diagonale
-		if (this.isMovePossible(this.getX() + 1, this.getY() +1))
-		{
-			moveable.add(new Point(this.getX() + 1, this.getY() +1));
-		}
-		if (this.isMovePossible(this.getX() + 1, this.getY() -1))
-		{
-			moveable.add(new Point(this.getX() + 1, this.getY() -1));
-		}
-		if (this.isMovePossible(this.getX() - 1, this.getY() + 1))
-		{
-			moveable.add(new Point(this.getX() - 1, this.getY() + 1));
-		}
-		if (this.isMovePossible(this.getX() - 1, this.getY() - 1))
-		{
-			moveable.add(new Point(this.getX() - 1, this.getY() - 1));
-		}
 	}
 	
 	@Override

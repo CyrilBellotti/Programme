@@ -76,7 +76,6 @@ public class Hero extends Mobile {
 	public void fire()
 	{
 		this.saveLastPosition();
-//		super.fire();
 	}
 
 	public void moveBack() {

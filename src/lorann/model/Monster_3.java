@@ -41,13 +41,91 @@ public class Monster_3 extends Mobile
 				}
 				else 
 				{
+					// on recupere la visibilite
 					visibility();
 					if (moveable.size() == 0) {
 						randomNum = 0;
 					} else {
 						randomNum = (int)(Math.random() * ((moveable.size())));
 					}
-					move((int)moveable.get(randomNum).getX(), (int)moveable.get(randomNum).getY());  
+					
+					// si le hero est vers le haut  ..
+					if((getNettleWorld().getHero().getY() - getY()) < 0)  
+					{
+						System.out.println("--");
+						// si le hero est vers la gauche
+						if ((getNettleWorld().getHero().getX() - getX()) < 0)
+						{
+							if (isMovePossible(getX() - 1, getY() - 1))
+							{
+								move(getX() - 1, getY() - 1); 
+							}
+						}
+						else
+						{
+							if (isMovePossible(getX() + 1, getY() - 1))
+							{
+								move(getX() + 1, getY() - 1); 
+							}
+						}
+					}
+					else 
+					{
+						System.out.println("**");
+						// si le hero est vers la gauche
+						if ((getNettleWorld().getHero().getX() - getX()) < 0)
+						{
+							if (isMovePossible(getX() - 1, getY() + 1))
+							{
+								move(getX() - 1, getY() + 1); 
+							}
+						}
+						else
+						{
+							if (isMovePossible(getX() + 1, getY() + 1))
+							{
+								move(getX() + 1, getY() + 1); 
+							}
+						}
+					}
+					// si le hero est vers le bas droit
+					/*else if((getNettleWorld().getHero().getY() - getY()) < 0 && (getNettleWorld().getHero().getX() + getX()) < 0)  
+					{
+						// s'il peut aller a bas gauche, il y va
+						if (isMovePossible(getX() - 1, getY() + 1))
+						{
+							move(getX() - 1, getY() + 1); 
+						}
+						else 
+						{
+							move((int)moveable.get(randomNum).getX(), (int)moveable.get(randomNum).getY()); 
+						}
+					} 
+					// si le hero est vers le haut droit
+					else if((getNettleWorld().getHero().getY() + getY()) < 0 && (getNettleWorld().getHero().getX() + getX()) < 0)  
+					{
+						// s'il peut aller a haut droit, il y va
+						if (isMovePossible(getX() + 1, getY() + 1))
+						{
+							move(getX() + 1, getY() + 1); 
+						}
+						else 
+						{
+							move((int)moveable.get(randomNum).getX(), (int)moveable.get(randomNum).getY()); 
+						}
+					}
+					else 
+					{
+						// s'il peut aller a haut gauche, il y va
+						if (isMovePossible(getX() + 1, getY() - 1))
+						{
+							move(getX() + 1, getY() - 1); 
+						}
+						else 
+						{
+							move((int)moveable.get(randomNum).getX(), (int)moveable.get(randomNum).getY()); 
+						}
+					}*/
 				}
 			}
 		}, 0, interval);

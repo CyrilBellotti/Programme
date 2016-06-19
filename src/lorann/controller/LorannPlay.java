@@ -30,10 +30,10 @@ public class LorannPlay implements IOrderPerformed {
 		lastDirection = null;
 		this.lorann = lorann;
 		this.lorann.addMobile(new Hero(), 1, 1);
-		this.lorann.addMobile(new Monster_1(), 8, 5);
-		this.lorann.addMobile(new Monster_2(), 10, 5);
-		this.lorann.addMobile(new Monster_3(), 12, 5);
-		this.lorann.addMobile(new Monster_4(), 15, 5);
+		this.lorann.addMobile(new Monster_1(), 9, 5);
+		this.lorann.addMobile(new Monster_2(), 11, 5);
+		this.lorann.addMobile(new Monster_3(), 13, 5);
+		this.lorann.addMobile(new Monster_4(), 16, 5);
 	}
 
 	private ILorannWorld getLorannWorld() {
