@@ -4,16 +4,24 @@ import java.awt.Point;
 
 import aedt.showboard.IPawn;
 import lorann.contract.ILorannWorld;
+import lorann.contract.IMobile;
 import lorann.contract.ISprite;
 
-public abstract class Mobile extends Element implements IPawn {
+public abstract class Mobile extends Element implements IPawn, IMobile {
 	private final Point position;
 	private final Point pos;
+	protected Boolean dead; 
 
 	public Mobile(final ISprite sprite, final String category) {
 		super(sprite, Permeability.BLOCKING, category);
 		this.position = new Point();
 		this.pos = new Point();
+		this.dead = false;
+	}
+	
+	@Override
+	public void isDead() {
+		this.dead = true;
 	}
 
 	public void updateImage(ISprite sprite) 

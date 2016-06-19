@@ -34,13 +34,21 @@ public class Monster_1 extends Mobile
 			@Override
 			public void run() 
 			{
-				visibility();
-				if (moveable.size() == 0) {
-					randomNum = 0;
-				} else {
-					randomNum = (int)(Math.random() * ((moveable.size())));
+				if (dead) 
+				{
+					timer.cancel();
+					timer.purge();
 				}
-				move((int)moveable.get(randomNum).getX(), (int)moveable.get(randomNum).getY());  
+				else 
+				{
+					visibility();
+					if (moveable.size() == 0) {
+						randomNum = 0;
+					} else {
+						randomNum = (int)(Math.random() * ((moveable.size())));
+					}
+					move((int)moveable.get(randomNum).getX(), (int)moveable.get(randomNum).getY());  
+				}
 			}
 		}, 0, interval);
 	}

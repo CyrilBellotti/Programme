@@ -19,13 +19,7 @@ public class Monster_4 extends Mobile
 		this.lastPosition.setLocation(this.getPosition().x, this.getPosition().y);
 		defineNextPosition();
 	}
-	
-	/*@Override
-	public ActionOnHeroes getActionOnHeroes() 
-	{
-		return ActionOnHeroes.EAT_HERO;
-	}*/
-	
+		
 	public void defineNextPosition() 
 	{
 		Timer timer = new Timer();
@@ -34,13 +28,21 @@ public class Monster_4 extends Mobile
 			@Override
 			public void run() 
 			{
-				visibility();
-				if (moveable.size() == 0) {
-					randomNum = 0;
-				} else {
-					randomNum = (int)(Math.random() * ((moveable.size())));
+				if (dead) 
+				{
+					timer.cancel();
+					timer.purge();
 				}
-				move((int)moveable.get(randomNum).getX(), (int)moveable.get(randomNum).getY());  
+				else 
+				{
+					visibility();
+					if (moveable.size() == 0) {
+						randomNum = 0;
+					} else {
+						randomNum = (int)(Math.random() * ((moveable.size())));
+					}
+					move((int)moveable.get(randomNum).getX(), (int)moveable.get(randomNum).getY());  
+				}
 			}
 		}, 0, interval);
 	}

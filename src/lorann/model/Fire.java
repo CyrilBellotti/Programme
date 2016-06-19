@@ -126,17 +126,24 @@ public class Fire extends Mobile {
 				switch (mobile.getCategory()) 
 				{
 					case "Monster_1" :
+						mobile.isDead();
 						this.getNettleWorld().getMobiles().remove(mobile);
+						this.getNettleWorld().setExistFireball(false);
 						break;
 					case "Monster_2" : 
+						mobile.isDead();
 						this.getNettleWorld().getMobiles().remove(mobile);
+						this.getNettleWorld().setExistFireball(false);
 						break;
 					case "Monster_3" : 
-						this.getNettleWorld().setExistFireball(false);
+						mobile.isDead();
 						this.getNettleWorld().getMobiles().remove(mobile);
+						this.getNettleWorld().setExistFireball(false);
 						break;
 					case "Monster_4" : 
+						mobile.isDead();
 						this.getNettleWorld().getMobiles().remove(mobile);
+						this.getNettleWorld().setExistFireball(false);
 						break;
 					default : 
 						break;
