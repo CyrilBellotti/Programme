@@ -15,9 +15,12 @@ public abstract class Mobile extends Element implements IPawn {
 		this.position = new Point();
 		this.pos = new Point();
 	}
-	
-	
 
+	public void updateImage(ISprite sprite) 
+	{
+		super.setSprite(sprite);
+	}
+	
 	@Override
 	public int getX() {
 		return this.position.x;
@@ -75,11 +78,4 @@ public abstract class Mobile extends Element implements IPawn {
 			}
 		}
 	}
-	
-/*	public void fire() {
-		if()
-		{
-			
-		}
-	}*/
 }

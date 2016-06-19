@@ -71,6 +71,13 @@ public class Monster_3 extends Mobile
 	@Override
 	public void move(int x, int y) {
 		this.saveLastPosition();
+		
+		// si le hero est sur le monstre 
+		if (this.getNettleWorld().getHero().getX() == x && this.getNettleWorld().getHero().getY() == y){
+			// on tue le hero
+			this.getNettleWorld().delHero(x, y);
+		}
+		
 		super.move(x,y);
 	}
 	

@@ -164,8 +164,8 @@ public class LorannWorld extends Observable implements ILorannWorld {
 
 	@Override
 	public void delHero(int x, int y) {
-	LorannView.displayMessage("Tu t'es fait manger par le monstre");
-		this.addElement(MotionlessElements.getFromFileSymbol('M'), x, y);
+		LorannView.displayMessage("Tu t'es fait manger par le monstre");
+		System.exit(0);
 	}
 	
 	@Override

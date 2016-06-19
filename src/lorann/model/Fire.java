@@ -8,10 +8,12 @@ import lorann.contract.ISprite;
 
 public class Fire extends Mobile {
 
-	public int interval = 100;
+	public int interval = 200;
 	private final Point lastPosition;
 	private int randomNum;
 	private String orientation;
+	private String[] images = {"fireball_1.png", "fireball_2.png", "fireball_3.png", "fireball_4.png", "fireball_5.png"};
+	private int nbImage = 0;
 	
 	public Fire(String orientation) {
 		super(new Sprite("  ", "fireball_1.png"), "fireball");
@@ -30,6 +32,18 @@ public class Fire extends Mobile {
 			@Override
 			public void run() 
 			{
+				// changement de l'image de la boule
+				updateImage(new Sprite("☺!", images[nbImage]));
+				if (nbImage >= images.length - 1) 
+				{
+					nbImage = 0; 
+				} 
+				else 
+				{
+					nbImage++;
+				}
+				
+				// gestion du deplacement
 				switch(orientation) {
 					case "up" : 
 						move(getX(), getY() - 1);
